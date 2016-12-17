@@ -47,4 +47,4 @@ app.post('/create-post', (req, res) => {
   })
 })
 
-app.listen(port, () => console.log('Server is good to go!'))
+app.listen(process.env.PORT || port, () => console.log('Server is good to go!'))
