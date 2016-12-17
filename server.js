@@ -3,13 +3,16 @@ const app = express()
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const Post = require('./models/post')
+const { u, p} =  require('./config')
 
 const port = 8080
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-mongoose.connect('mongodb://localhost:27017/workshop-thoughtful')
+const dbUrl = `mongodb://${u}:${p}@ds041934.mlab.com:41934/thoughtful`
+
+mongoose.connect(dbUrl)
 
 app.get('/posts', (req, res) => {
   Post.find({}, (err, posts) => {
